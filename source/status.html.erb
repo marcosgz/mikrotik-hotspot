@@ -1,0 +1,103 @@
+---
+title: "Estado"
+language: "en"
+---
+<% content_for :head do %>
+  $(if refresh-timeout)
+  <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+  $(endif)
+<% end %>
+
+<script language="JavaScript">
+<!--
+$(if advert-pending == 'yes')
+var popup = '';
+function focusAdvert() {
+  if (window.focus) popup.focus();
+}
+function openAdvert() {
+  popup = open('$(link-advert)', 'hotspot_advert', '');
+  setTimeout("focusAdvert()", 1000);
+}
+$(endif)
+function openLogout() {
+  if (window.name != 'hotspot_status') return true;
+  open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+  window.close();
+  return false;
+}
+
+$(if advert-pending == 'yes')
+  if ( /opera/i.test(navigator.userAgent) ) {
+    window.addEventListener("DOMContentLoaded", openAdvert, null);
+  } else {
+    window.addEventListener("load", openAdvert );
+  }
+$(endif)
+//-->
+</script>
+
+<div id="status">
+  <header>
+    <div class="info">
+      <h1><%= current_page.data.title %></h1>
+      $(if login-by == 'trial')
+        <span>Welcome trial user!<</span>
+      $(elif login-by != 'mac')
+        <span>Welcome $(username)!</span>
+      $(endif)
+    </div>
+  </header>
+
+  <section>
+    <div class="thumbnail">
+      <%= image_tag 'logo-code4web.svg' %>
+    </div>
+
+    <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+      <table class="table">
+        <tr>
+          <th class="t-right">Endereço IP:</th>
+          <td>$(ip)</td>
+        </tr>
+        <tr>
+          <th class="t-right">bytes up/down:</th>
+          <td>$(bytes-in-nice) / $(bytes-out-nice)</td>
+        </tr>
+        $(if session-time-left)
+          <tr>
+            <th class="t-right">connected / left:</th>
+            <td>$(uptime) / $(session-time-left)</td>
+          </tr>
+        $(else)
+          <tr>
+            <th class="t-right">connected:</th>
+            <td>$(uptime)</td>
+          </tr>
+        $(endif)
+        $(if blocked == 'yes')
+          <tr>
+            <th class="t-right">status:</th>
+            <td>
+              <div style="color: #FF8080">
+                <a href="$(link-advert)" target="hotspot_advert">advertisement</a> required
+              </div>
+            </td>
+          </tr>
+        $(elif refresh-timeout)
+          <tr>
+            <th class="t-right">status refresh:</th>
+            <td>$(refresh-timeout)</td>
+          </tr>
+        $(endif)
+      </table>
+      $(if login-by-mac != 'yes')
+        <br>
+        <!-- user manager link. if user manager resides on other router, replace $(hostname) by its address
+        <button onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
+        <!-- end of user manager link -->
+        <input type="submit" value="Sair">
+      $(endif)
+    </form>
+  </section>
+</div>

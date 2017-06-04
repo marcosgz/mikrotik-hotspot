@@ -1,0 +1,53 @@
+$alert-warn-bg: #F8F4D5;
+$alert-warn-color: #96722E;
+
+.alert {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 9999;
+
+}
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  .close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    margin-left: 8px;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+  }
+  a {
+    color: #337ab7;
+    text-decoration: none;
+  }
+  a {
+    background-color: transparent;
+  }
+  &.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+  }
+  &.alert-warning {
+    background-color: $alert-warn-bg;
+    border-color: darken($alert-warn-bg, 20%);
+    color: $alert-warn-color;
+  }
+}
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity .15s linear;
+  -o-transition: opacity .15s linear;
+  transition: opacity .15s linear;
+  &.in {
+    opacity: 1;
+  }
+}

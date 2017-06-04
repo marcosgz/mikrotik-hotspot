@@ -1,0 +1,64 @@
+---
+title: "Logout"
+language: "en"
+---
+<script language="JavaScript">
+  <!--
+  function openLogin() {
+    if (window.name != 'hotspot_logout') return true;
+    open('$(link-login)', '_blank', '');
+    window.close();
+    return false;
+  }
+  //-->
+</script>
+
+<div id="logout">
+  <header>
+    <div class="info">
+      <h1><%= current_page.data.title %></h1>
+      <span>you have just logged out</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="thumbnail">
+      <%= image_tag 'logo-code4web.svg' %>
+    </div>
+
+    <table class="table">
+      <tr>
+        <th class="t-right">user name</th>
+        <td>$(username)</td>
+      </tr>
+      <tr>
+        <th class="t-right">IP address</th>
+        <td>$(ip)</td>
+      </tr>
+      <tr>
+        <th class="t-right">MAC address</th>
+        <td>$(mac)</td>
+      </tr>
+      <tr>
+        <th class="t-right">session time</th>
+        <td>$(uptime)</td>
+      </tr>
+      $(if session-time-left)
+        <tr>
+          <th class="t-right">time left</th>
+          <td>$(session-time-left)</td>
+        </tr>
+      $(endif)
+      <tr>
+        <th class="t-right">bytes up/down</th>
+        <td>$(bytes-in-nice) / $(bytes-out-nice)</td>
+      </tr>
+    </table>
+    <br>
+
+    <form action="$(link-login)" name="login" onSubmit="return openLogin()">
+      <input type="submit" value="log in">
+    </form>
+  </section>
+
+</div>

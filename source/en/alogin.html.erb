@@ -1,0 +1,41 @@
+---
+title: "Login Redirect"
+language: "en"
+---
+<% content_for :head do %>
+  <meta http-equiv="refresh" content="2; url=$(link-redirect)">
+<% end %>
+
+<script language="JavaScript">
+<!--
+function startClock() {
+  $(if popup == 'true')
+    open('$(link-status)', 'hotspot_status', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=290,height=200');
+  $(endif)
+  location.href = '$(link-redirect)';
+}
+if ( /opera/i.test(navigator.userAgent) ) {
+  window.addEventListener("DOMContentLoaded", startClock ,null);
+} else {
+  window.addEventListener("load", startClock );
+}
+//-->
+</script>
+
+<div id="alogin">
+  <header>
+    <div class="info">
+      <h1><%= current_page.data.title %></h1>
+      <span>You are logged in</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="thumbnail">
+      <%= image_tag 'logo-code4web.svg' %>
+    </div>
+    <p class="message">
+      If nothing happens, click <a href="$(link-redirect)">here</a></td>
+    </p>
+  </section>
+</div>

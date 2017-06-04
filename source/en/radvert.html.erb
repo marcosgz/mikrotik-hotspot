@@ -1,0 +1,53 @@
+---
+title: "Advertisement"
+language: "en"
+---
+<% content_for :head do %>
+  <meta http-equiv="refresh" content="2; url=$(link-orig)">
+<% end %>
+
+<script language="JavaScript">
+<!--
+var popup = '';
+function openOrig() {
+  if (window.focus) popup.focus();
+  location.href = '$(link-orig)';
+}
+function openAd() {
+  location.href = '$(link-redirect)';
+}
+function openAdvert() {
+  if (window.name != 'hotspot_advert') {
+    popup = open('$(link-redirect)', 'hotspot_advert', '');
+    setTimeout("openOrig()", 1000);
+    return;
+  }
+  setTimeout("openAd()", 1000);
+}
+
+if ( /opera/i.test(navigator.userAgent) ) {
+  window.addEventListener("DOMContentLoaded", openAdvert ,null);
+} else {
+  window.addEventListener("load", openAdvert );
+}
+//-->
+</script>
+
+<div id="radvert">
+  <header>
+    <div class="info">
+      <h1><%= current_page.data.title %></h1>
+    </div>
+  </header>
+
+  <section>
+    <div class="thumbnail">
+      <%= image_tag 'logo-code4web.svg' %>
+    </div>
+    <p class="message">
+      If nothing happens, open
+      <a href="$(link-redirect)" target="hotspot_advert">advertisement</a>
+      manually.
+    </p>
+  </section>
+</div>
