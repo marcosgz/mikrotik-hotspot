@@ -16,6 +16,7 @@ page '/*.json', layout: false
 page '/*.txt', layout: false
 page "/rlogin.html", layout: false
 page "/redirect.html", layout: false
+page '/xml/*', layout: false
 
 
 # With alternative layout
