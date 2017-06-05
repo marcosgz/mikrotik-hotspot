@@ -1,5 +1,5 @@
 ---
-title: "Estado"
+title: "Detalhes"
 language: "pt-br"
 ---
 <% content_for :head do %>
@@ -42,9 +42,9 @@ $(endif)
     <div class="info">
       <h1><%= current_page.data.title %></h1>
       $(if login-by == 'trial')
-        <span>Welcome trial user!<</span>
+        <span>Seja bem vindo!<</span>
       $(elif login-by != 'mac')
-        <span>Welcome $(username)!</span>
+        <span>Seja bem vindo(a) $(username)!</span>
       $(endif)
     </div>
   </header>

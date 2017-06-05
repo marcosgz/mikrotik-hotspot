@@ -17,7 +17,6 @@
       <%= yield %>
     </main>
     <footer>
-      <%= current_page.data.language %>
       <% if current_page.data.language == 'pt-br' %>
         <a href="$(link-login-only)?target=en&amp;dst=$(link-orig-esc)">
           <span class="flag-icon flag-icon-us"></span> English
