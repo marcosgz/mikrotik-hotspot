@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <title>Volte sempre</title>
+    <link href="/stylesheets/app.css" rel="stylesheet" />
+
+    
+  </head>
+  <body>
+    <main>
+      <script language="JavaScript">
+  <!--
+  function openLogin() {
+    if (window.name != 'hotspot_logout') return true;
+    open('$(link-login)', '_blank', '');
+    window.close();
+    return false;
+  }
+  //-->
+</script>
+
+<div id="logout">
+  <header>
+    <div class="info">
+      <h1>Volte sempre $(username)</h1>
+      <span>Você acaba de sair</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="thumbnail">
+      <img src="/images/logo-code4web.svg" alt="Logo code4web" />
+    </div>
+
+    <table class="table">
+      <tr>
+        <th class="t-right">Nome de usuário</th>
+        <td>$(username)</td>
+      </tr>
+      <tr>
+        <th class="t-right">Endereço de IP</th>
+        <td>$(ip)</td>
+      </tr>
+      <tr>
+        <th class="t-right">Endereço MAC</th>
+        <td>$(mac)</td>
+      </tr>
+      <tr>
+        <th class="t-right">Tempo da sessão</th>
+        <td>$(uptime)</td>
+      </tr>
+      $(if session-time-left)
+        <tr>
+          <th class="t-right">Tempo disponível</th>
+          <td>$(session-time-left)</td>
+        </tr>
+      $(endif)
+      <tr>
+        <th class="t-right">bytes up/down</th>
+        <td>$(bytes-in-nice) / $(bytes-out-nice)</td>
+      </tr>
+    </table>
+    <br>
+
+    <form action="$(link-login)" name="login" onSubmit="return openLogin()">
+      <input type="submit" value="Entrar">
+    </form>
+  </section>
+
+</div>
+
+    </main>
+    <footer>
+        <a href="$(link-login-only)?target=en&amp;dst=$(link-orig-esc)">
+          <span class="flag-icon flag-icon-us"></span> English
+        </a>
+      &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
+      <a href="http://www.mikrotik.com" target="_blank" style="border: none;">
+        Powered by MikroTik RouterOS
+      </a>
+    </footer>
+    
+  </body>
+</html>

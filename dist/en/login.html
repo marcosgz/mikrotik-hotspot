@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <title>Login</title>
+    <link href="/stylesheets/app.css" rel="stylesheet" />
+
+    
+  </head>
+  <body>
+    <main>
+      $(if chap-id)
+  <form name="sendin" action="$(link-login-only)" method="post">
+    <input type="hidden" name="username" />
+    <input type="hidden" name="password" />
+    <input type="hidden" name="dst" value="$(link-orig)" />
+    <input type="hidden" name="popup" value="true" />
+  </form>
+
+  <script type="text/javascript" src="/md5.js"></script>
+  <script type="text/javascript">
+  <!--
+  function doLogin() {
+    document.sendin.username.value = document.login.username.value;
+    document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+    document.sendin.submit();
+    return false;
+   }
+  //-->
+  </script>
+$(endif)
+
+<div id="login">
+  <header>
+    <div class="info">
+      <h1>Login</h1>
+      <span>
+        Please log on to use the internet hotspot service<br>
+        $(if trial == 'yes')
+          Free trial available,
+          <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">
+            click here
+          </a>.
+        $(endif)
+      </span>
+    </div>
+  </header>
+
+  <section>
+    <div class="thumbnail">
+      <img src="/images/logo-code4web.svg" alt="Logo code4web" />
+    </div>
+    <form name="login" action="$(link-login-only)" method="post"
+        $(if chap-id) onSubmit="return doLogin()" $(endif)>
+      <input type="hidden" name="dst" value="$(link-orig)" />
+      <input type="hidden" name="popup" value="true" />
+      <input name="username" type="text" value="$(username)" placeholder="Username"/>
+      <input name="password" type="password" placeholder="Password"/>
+      <input type="submit" value="OK" />
+    </form>
+  </section>
+</div>
+
+$(if error)
+  <div class="alert alert-warning fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    <strong>Warning!</strong> $(error)
+  </div>
+$(endif)
+
+<script type="text/javascript">
+<!--
+document.login.username.focus();
+
+var links = document.querySelectorAll('.alert a.close');
+Array.prototype.forEach.call(links, function (link) {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    var parent = e.target.parentElement;
+    parent.classList.remove('in');
+  });
+});
+
+//-->
+</script>
+
+    </main>
+    <footer>
+        <a href="$(link-login-only)?target=%2F&amp;dst=$(link-orig-esc)">
+          <span class="flag-icon flag-icon-br"></span> Português
+        </a>
+      &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
+      <a href="http://www.mikrotik.com" target="_blank" style="border: none;">
+        Powered by MikroTik RouterOS
+      </a>
+    </footer>
+    
+  </body>
+</html>
